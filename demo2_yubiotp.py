@@ -1,6 +1,6 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
-AES_KEY_HEX = "43e4da7ae648e1621a000ec7c468edb7"  #klucz
+AES_KEY_HEX = "43e4da7ae648e1621a000ec7c468edb9"  #klucz
 PRIVATE_ID_HEX = "377639b9c631"                   
 MODHEX = "cbdefghijklnrtuv"
 
