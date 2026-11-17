@@ -1,0 +1,36 @@
+vault/
+  format.py     #  nagłówek, serializacja, AES-GCM
+  slots.py      #  key wrapping
+  db.py         #  SQLite
+  kdf.py        #  Argon2id + HKDF
+  hardware.py   #  YubiKey (HMAC-SHA1, później hmac-secret)
+tests/
+  vectors/      # wspólne wektory testowe
+attacks/        # wersja v0 i ataki
+.gitignore      # secrets.local, .venv, *.vault
+
+## 1. Odnośniki do używanych materiałów
+**Normy i specyfikacje**
+- [RFC 9106](https://www.rfc-editor.org/rfc/rfc9106) — Argon2: definicja i zalecane zestawy parametrów
+- [RFC 5869](https://www.rfc-editor.org/rfc/rfc5869) — HKDF: etapy extract i expand
+- [RFC 2104](https://www.rfc-editor.org/rfc/rfc2104) — HMAC
+- [RFC 2202](https://www.rfc-editor.org/rfc/rfc2202) — wektory testowe HMAC-SHA1
+- [RFC 4226](https://www.rfc-editor.org/rfc/rfc4226) i [RFC 6238](https://www.rfc-editor.org/rfc/rfc6238) — HOTP i TOTP
+- NIST SP 800-38D — tryb GCM dla szyfrów blokowych
+- [W3C Web Authentication (WebAuthn)](https://www.w3.org/TR/webauthn/) — ceremonie rejestracji i uwierzytelnienia
+- FIDO CTAP2 — protokół klient–authenticator, w tym rozszerzenie `hmac-secret`
+
+**Dokumentacja producenta**
+- [YubiKey 5 — Protocols and Applications](https://docs.yubico.com/hardware/yubikey/yk-5/tech-manual/yk5-apps.html) — podział na aplikacje w kluczu
+- [yubikey-manager — Library Usage](https://developers.yubico.com/yubikey-manager/Library_Usage.html) — dostęp do klucza z Pythona
+- [yubikit.yubiotp — API](https://developers.yubico.com/yubikey-manager/API_Documentation/autoapi/yubikit/yubiotp/index.html) — `calculate_hmac_sha1`, konfiguracja slotu
+
+**Materiały wdrożeniowe**
+- [Practical Cryptography for Developers](https://cryptobook.nakov.com) — Svetlin Nakov; skróty, HMAC, KDF, szyfry symetryczne z przykładami w Pythonie
+- [Documenting KeePass KDBX4 file format](https://palant.de/2023/03/29/documenting-keepass-kdbx4-file-format/) — Wladimir Palant; analiza dojrzałego formatu zaszyfrowanej bazy
+- [KDBX 4 — KeePass Help Center](https://keepass.info/help/kb/kdbx_4.html) — opis formatu od autora
+- [webauthn.guide](https://webauthn.guide/) — WebAuthn krok po kroku
+- [WebAuthn w Chrome DevTools](https://developer.chrome.com/docs/devtools/webauthn) — wirtualny authenticator do testów bez sprzętu
+
+**Biblioteki**
+- `cryptography`, `argon2-cffi`, `fido2` (python-fido2), `yubikey-manager`
